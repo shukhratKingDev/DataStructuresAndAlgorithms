@@ -61,24 +61,29 @@ public class SubArrayWithGivenSum {
     }
 
     public static ArrayList<Integer> subarraySum_1_3(int[] arr, int n, int s) {
-        int k = 0;
         ArrayList<Integer> list = new ArrayList<>();
+
+        if(s<=0){
+             list.add(0,-1);
+             return list;
+        }
+        int k = 0;
         int sum = 0;
 
         for (int i = 0; i < n; i++) {
             sum += arr[i];
-            if (sum == s) {
-                list.add(0, k + 1);
-                list.add(1, i + 1);
-                return list;
-            }
+
             if (sum > s) {
                 sum = 0;
                 k++;
                 i = k - 1;
             }
-
-            if ((sum < s || sum > s) && i == n - 1) {
+            if (sum == s) {
+                list.add(0, k + 1);
+                list.add(1, i + 1);
+                return list;
+            }
+            if (i == n - 1) {
                 list.add(0, -1);
                 return list;
             }
