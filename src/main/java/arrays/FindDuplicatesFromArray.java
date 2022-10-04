@@ -1,24 +1,26 @@
 package arrays;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class FindDuplicatesFromArray {
     public static void main(String[] args) {
-        int []arr={1,1,1,2,3,4,5,5,1,1,1,2,3,4,5,5,1,1,1,2,3,4,5,5,55,55,78,78,909,90,90};
+        int []arr={13, 9, 25, 1, 1, 0 ,22, 13 ,22, 20 ,3 ,8 ,11 ,25,10, 3, 15 ,11 ,19 ,20, 2, 4, 25 ,14 ,23 ,14};
         System.out.println(duplicates(arr,8));
     }
     public static ArrayList<Integer> duplicates(int[] arr, int n) {
 
         Arrays.sort(arr);
-     Set set=new HashSet();
+     Set<Integer> set=new LinkedHashSet<>();
         for (int i=1;i<arr.length;i++){
             if (arr[i-1]==arr[i]){
                 set.add(arr[i]);
             }
         }
+
+        if (set.isEmpty()){
+           set.add(-1);
+        }
+
 return new ArrayList<Integer>(set);
     }
 }
